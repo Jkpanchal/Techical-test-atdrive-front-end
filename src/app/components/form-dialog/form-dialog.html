@@ -1,0 +1,21 @@
+<h2 mat-dialog-title style="margin:2rem">{{data.mode === 'edit' ?'Edit Product': 'Add New Product'}}</h2>
+<mat-dialog-content>
+    <mat-form-field appearance="fill" style="width:100%; margin-bottom:1rem;">
+        <mat-label>Product Name</mat-label>
+        <input matInput [(ngModel)]="formData.product.name" placeholder="Enter product name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width:100%; margin-bottom:1rem;">
+        <mat-label>Product Price</mat-label>
+        <input matInput [(ngModel)]="formData.product.price" placeholder="0.00" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width:100%; margin-bottom:1rem;">
+        <mat-label>Product Description</mat-label>
+        <textarea matInput rows="4" [(ngModel)]="formData.product.description" placeholder="Enter description"></textarea>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button matButton (click)="onNoClick()">Cancel</button>
+    <button matButton [mat-dialog-close]="save()" cdkFocusInitial>{{data.mode === 'edit' ? 'Update' : 'Add'}}</button>
+</mat-dialog-actions>

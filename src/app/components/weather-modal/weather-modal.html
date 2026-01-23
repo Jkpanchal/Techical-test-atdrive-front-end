@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Card</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Reset and body centering */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #AAAAAA;
+            /* Dark background to make card pop */
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 320px;
+        }
+
+        /* Card Container */
+        .weather-card {
+            background-color: #424244;
+            /* Matches the dark grey card background */
+            width: 320px;
+            height: 320px;
+            border-radius: 35px;
+            padding: 25px;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        /* Top Header (City & Time) */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        /* Main Temperature Section */
+        .main-weather {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
+            /* Centering adjustment */
+            width: 100%;
+        }
+
+        .temp {
+            font-size: 4.5rem;
+            font-weight: 300;
+            line-height: 1;
+        }
+
+        .desc {
+            font-size: 1rem;
+            color: #a0a0a2;
+            /* Muted grey for description */
+            margin-top: 5px;
+        }
+
+        /* Bottom Footer Section */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 10px;
+        }
+
+        /* Metrics List (Wind, Humidity, Sun) */
+        .metrics {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .metric-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: #e0e0e0;
+        }
+
+        .metric-item i {
+            width: 20px;
+            /* Fixed width for alignment */
+            text-align: center;
+            color: #a0a0a2;
+            /* Icon color */
+        }
+
+        /* Large Weather Illustration */
+        /* Note: Using a large FontAwesome icon to simulate the graphic */
+        .weather-illustration {
+            font-size: 4.5rem;
+            color: #2c3e50;
+            /* Dark blue base */
+            position: relative;
+            /* Simple styling to mimic the colorful icon */
+            background: -webkit-linear-gradient(#4b6cb7, #182848);
+            -webkit-background-clip: text;
+            /* -webkit-text-fill-color: transparent; Remove this if you want flat color */
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Customizing the illustration colors purely with CSS/Text */
+        .fa-cloud-bolt {
+            color: #3b5998;
+            /* Cloud color */
+        }
+
+        /* Using a trick to color the lightning bolt differently would require SVG, 
+           so we settle for a nice blue cloud here or a specific CSS gradient */
+    </style>
+</head>
+
+<body>
+
+    <div class="weather-card">
+        <div class="header">
+            <span>{{weatherData?.location.name}}</span>
+            <span>{{weatherData?.location.localtime.split(" ")[1]}}</span>
+        </div>
+
+        <div class="main-weather">
+            <div class="temp">{{weatherData?.current.temp_c}}°C</div>
+            <div class="desc">{{weatherData?.current.condition.text}}</div>
+        </div>
+
+        <div class="footer">
+            <div class="metrics">
+                <div class="metric-item">
+                    <i class="fa-solid fa-wind"></i>
+                    <span>{{weatherData?.current.wind_kph}} km/h</span>
+                </div>
+                <div class="metric-item">
+                    <i class="fa-solid fa-droplet"></i>
+                    <span>{{weatherData?.current.humidity}}%</span>
+                </div>
+                <div class="metric-item">
+                    <i class="fa-solid fa-gauge"></i> {{weatherData?.current.pressure_mb}} mb <span></span>
+                </div>
+            </div>
+
+            <div class="weather-illustration">
+                <!-- <i class="fa-solid fa-cloud-showers-heavy"></i> -->
+                <img [src]="weatherData?.current.condition.icon"/>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
