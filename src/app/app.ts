@@ -10,4 +10,5 @@ import { Product, Products } from './products/products';
 })
 export class App {
   protected readonly title = signal('crud-app-fe');
+  
 }
