@@ -8,9 +8,9 @@ check if angular cli is installed or not if it is not installed then do install 
 
 to Generate API
 
-go to [weather](https://www.weatherapi.com/) sign up and create free tier api key and to test API key
+go to https://www.weatherapi.com/ sign up and create free tier api key and to test API key
 
-follow  the URL like this  [weather](https://api.weatherapi.com/v1/current.json?key=API_KEY&q=Noida)
+follow  the URL like this  https://api.weatherapi.com/v1/current.json?key=API_KEY&q=Noida
 
 To start a local development server, run:
 
